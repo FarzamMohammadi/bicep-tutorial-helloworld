@@ -14,7 +14,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   sku: {
     name: 'F1'
   }
-  kind: 'linux'
+  kind: 'app'
   properties: {
     reserved: false
   }
@@ -28,11 +28,18 @@ resource appService 'Microsoft.Web/sites@2020-12-01' = {
     serverFarmId: appServicePlan.id
     httpsOnly: true
     siteConfig: {
-      linuxFxVersion: 'NODE:20-lts'
       appSettings: [
         {
           name: 'TEXT_TO_REPLACE_SUBTITLE_WITH' // This value needs to match the name of the environment variable in the application code
           value: textToReplaceSubtileWithValue
+        }
+        {
+          name: 'SCM_DO_BUILD_DURING_DEPLOYMENT' // Build the application during deployment
+          value: 'true'
+        }
+        {
+          name: 'WEBSITE_NODE_DEFAULT_VERSION' // Set the default node version
+          value: '~20'
         }
       ]
       publicNetworkAccess: 'Enabled'
