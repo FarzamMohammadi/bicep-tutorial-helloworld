@@ -1,10 +1,10 @@
 @description('Azure resource deployment location.')
 param location string = resourceGroup().location
 
-@description('Default text for the subtitle environment variable.')
+@description('The text to replace the default subtitle with.')
 param textToReplaceSubtileWithValue string = 'This is my default subtitle text. Boring, right?'
 
-@description('Default branch for repository deployment.')
+@description('Branch of the repository for deployment.')
 param repositoryBranch string = 'main'
 
 // App Service Plan Creation
