@@ -1,5 +1,5 @@
 @description('Azure resource deployment location.')
-param location string = resourceGroup().location
+param location string = resourceGroup().location // Bicep function returning the resource group location
 
 @description('The text to replace the default subtitle with.')
 param textToReplaceSubtitleWith string = 'This is my default subtitle text. Boring, right?'
